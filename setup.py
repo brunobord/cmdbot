@@ -2,6 +2,9 @@
 
 from distutils.core import setup
 
+with open('README.rst') as fd:
+    long_description = fd.read()
+
 setup(
     name='cmdbot',
     version='1.0.0',
@@ -9,6 +12,8 @@ setup(
     url='https://github.com/brunobord/cmdbot/',
     author="Bruno Bord",
     author_email='bruno@jehaisleprintemps.net',
-    license="MIT",
+    license="Public Domain (WTFPL)",
     platforms='any',
+    description="An IRC Bot with a `cmd` attitude",
+    long_description=long_description,
 )
