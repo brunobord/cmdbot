@@ -102,7 +102,7 @@ Want to run the bot?
 
 It's as simple as::
 
-    python bot.py bot.ini
+    python cmdbot/core.py bot.ini
 
 But... your bot won't be able to do much. Here is a sample "dialog"::
 
