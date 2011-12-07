@@ -11,6 +11,7 @@ extends the Bot main class.
 import sys
 import argparse
 from ConfigParser import SafeConfigParser
+from functools import wraps
 import socket
 import logging
 logging.basicConfig(level=logging.INFO)
@@ -19,6 +20,7 @@ logging.basicConfig(level=logging.INFO)
 # Decorators
 def direct(func):
     "Decorator: only process the line if it's a direct message"
+    @wraps(func)
     def newfunc(bot, *args, **kwargs):
         line = args[0]
         if line.direct:
@@ -28,6 +30,7 @@ def direct(func):
 
 def admin(func):
     "Decorator, only process the line if the author is in the admin list"
+    @wraps(func)
     def newfunc(bot, *args, **kwargs):
         line = args[0]
         if line.nick_from in bot.admins:
@@ -76,6 +79,14 @@ class Bot(object):
         self.realname = config.get('general', 'realname', vars=default_vars)
         self.admins = config.get('general', 'admins', vars=default_vars).split()
         self.brain = self.Brain()  # this brain can contain *anything* you want.
+
+        self.available_functions = []
+        for name in dir(self):
+            if name.startswith('do_'):
+                func = getattr(self, name)
+                if callable(func):
+                    self.available_functions.append(name.replace('do_', ''))
+
         self.s = socket.socket()
 
     def connect(self):
@@ -138,13 +149,17 @@ class Bot(object):
     def do_help(self, line):
         "(direct) Gives some help"
         self.say('%s: you need some help? Here is some...' % line.nick_from)
-        available_functions = []
-        for name in dir(self):
-            if name.startswith('do_'):
-                func = getattr(self, name)
-                if callable(func):
-                    available_functions.append(name.replace('do_', ''))
-        self.say('Available commands: %s' % ', '.join(available_functions))
+
+        splitted = line.message.split()
+        if len(splitted) == 1:
+            self.say('Available commands: %s' % ', '.join(self.available_functions))
+        else:
+            command_name = splitted[1]
+            try:
+                func = getattr(self, 'do_%s' % command_name)
+                self.say('%s: %s' % (command_name, func.__doc__))
+            except AttributeError:
+                self.say('Sorry, command "%s" unknown' % command_name)
 
     def run(self):
         "Main programme. Connect to server and start listening"
