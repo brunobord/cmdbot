@@ -63,9 +63,9 @@ For more information, go to : <http://sam.zoy.org/wtfpl/>
 Install
 =======
 
-CmdBot is hosted on Github. If you want the latest code, go fetch it here::
+CmdBot is hosted on Github. If you want the latest code, go fetch it here:
 
-    https://github.com/brunobord/cmdbot
+https://github.com/brunobord/cmdbot
 
 You can install the program using::
 
