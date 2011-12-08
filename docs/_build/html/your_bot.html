@@ -100,13 +100,89 @@ and try to talk to it, here is some result</p>
 </div>
 <p>We&#8217;ve used the <tt class="xref py py-class docutils literal"><span class="pre">Brain</span></tt> of our Bot, to tell it to store in-memory who&#8217;s
 talked to him last. And by asking it <cite>who</cite>, it&#8217;s able to tell it to us.</p>
+<div class="section" id="the-do-trick">
+<h4>The <cite>do_&lt;trick&gt;</cite><a class="headerlink" href="#the-do-trick" title="Permalink to this headline">¶</a></h4>
+<p>You may have noticed that every new thing your bot knows to do is prefixed by
+<tt class="docutils literal"><span class="pre">do_</span></tt>. That&#8217;s the trick. When someone on the channel says something, the bot
+analyses it. If the first word of the message is a <tt class="docutils literal"><span class="pre">verb</span></tt> your bot knows
+about, the <cite>do_&lt;verb&gt;</cite> action is processed.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This behaviour is heavily borrowed on the Python <tt class="xref py py-mod docutils literal"><span class="pre">cmd</span></tt> module.</p>
+</div>
+</div>
+</div>
+<div class="section" id="the-decorators">
+<h3>The decorators<a class="headerlink" href="#the-decorators" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="direct">
+<h4>&#64;direct<a class="headerlink" href="#direct" title="Permalink to this headline">¶</a></h4>
+<p>Whenever a <tt class="xref py py-meth docutils literal"><span class="pre">do_</span></tt> method is decorated by <tt class="docutils literal"><span class="pre">&#64;direct</span></tt>, it will only
+be executed if someone is directly talking to the Bot.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@direct</span>
+<span class="k">def</span> <span class="nf">do_hello</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s">&#39;hello, you&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-irc"><div class="highlight"><pre><span class="cp">22:53 </span><span class="k">-!- </span><span class="s">cmdbot </span><span class="c">[~cmdbot@127.0.0.1] has joined #cdc</span>
+<span class="cp">22:53 </span><span class="nt">&lt; cmdbot&gt; </span>Hi everyone.
+<span class="cp">22:54 </span><span class="nt">&lt; No`&gt; </span>hello
+<span class="cp">22:54 </span><span class="nt">&lt; No`&gt; </span><span class="na">cmdbot:</span> hello
+<span class="cp">22:54 </span><span class="nt">&lt; cmdbot&gt; </span>hello, you
+</pre></div>
+</div>
+<p>The first time, the user didn&#8217;t talk directly to the bot. The second time, it
+was mentioned, so the bot replied &#8220;hello, you&#8221;</p>
+</div>
+<div class="section" id="admin">
+<h4>&#64;admin<a class="headerlink" href="#admin" title="Permalink to this headline">¶</a></h4>
+<p>When a <tt class="xref py py-meth docutils literal"><span class="pre">do_</span></tt> is decorated by <tt class="docutils literal"><span class="pre">&#64;admin</span></tt> the code will only be
+executed if the previous lines has been said by an admin.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@admin</span>
+<span class="k">def</span> <span class="nf">do_hello</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s">&#39;hello, my lord&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-irc"><div class="highlight"><pre><span class="cp">22:53 </span><span class="k">-!- </span><span class="s">cmdbot </span><span class="c">[~cmdbot@127.0.0.1] has joined #cdc</span>
+<span class="cp">22:53 </span><span class="nt">&lt; cmdbot&gt; </span>Hi everyone.
+<span class="cp">22:54 </span><span class="nt">&lt; NotAdmin&gt; </span>hello
+<span class="cp">22:54 </span><span class="nt">&lt; AdminUser&gt; </span>hello
+<span class="cp">22:54 </span><span class="nt">&lt; cmdbot&gt; </span>hello, my lord
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You&#8217;ve noticed that it doesn&#8217;t have to be direct. It&#8217;s only if the verb it
+the first word of the message.</p>
+</div>
+</div>
+<div class="section" id="and-what-about-no-decorator">
+<h4>And what about &#8220;no decorator&#8221;<a class="headerlink" href="#and-what-about-no-decorator" title="Permalink to this headline">¶</a></h4>
+<p>Without decorator, the <cite>do_&lt;stuff&gt;</cite>  method will be called each time a line is
+being said by a user. Beware, then, your bot may have a lot of work to do...</p>
+</div>
+<div class="section" id="and-what-happens-if-we-mix-them">
+<h4>And what happens if we mix them?<a class="headerlink" href="#and-what-happens-if-we-mix-them" title="Permalink to this headline">¶</a></h4>
+<p>There comes the beauty of decorators. You can mix them...</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@admin</span>
+<span class="nd">@direct</span>
+<span class="k">def</span> <span class="nf">do_hello</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s">&#39;hello, my lord&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The bot will then only say &#8220;hello my lord&#8221; if some admin directly told it
+&#8220;hello&#8221;.</p>
+</div>
 </div>
 </div>
 <div class="section" id="what-s-next">
 <h2>What&#8217;s next?<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h2>
 <p>Well... now, the sky is the limit. Extended bots can manipulate data, remember
-it, treat and process it... And you can still use this bot as a &#8220;dumb&#8221;, if you
-want!</p>
+it, treat and process it... And you can still use this bot as a &#8220;dumb&#8221; one, if
+you want!</p>
+<p>You can also make your own decorators, exactly the way <tt class="xref py py-func docutils literal"><span class="pre">&#64;admin()</span></tt> and
+<tt class="xref py py-func docutils literal"><span class="pre">&#64;direct()</span></tt> work. You may, for example... change the behaviour of a command
+if your brain contains a certain bit of data, or if the first letter of the nick
+is a &#8220;Z&#8221;... you see?... no. limit.</p>
 <p>A few more examples will probably appear in the <tt class="file docutils literal"><span class="pre">samples</span></tt> directory. Stay
 tuned!</p>
 </div>
@@ -122,7 +198,17 @@ tuned!</p>
   <ul>
 <li><a class="reference internal" href="#">Your Own Bot</a><ul>
 <li><a class="reference internal" href="#want-a-more-clever-bot">Want a more clever bot?</a><ul>
-<li><a class="reference internal" href="#detailed-example-brainybot">Detailed example: <tt class="docutils literal"><span class="pre">brainybot</span></tt></a></li>
+<li><a class="reference internal" href="#detailed-example-brainybot">Detailed example: <tt class="docutils literal"><span class="pre">brainybot</span></tt></a><ul>
+<li><a class="reference internal" href="#the-do-trick">The <cite>do_&lt;trick&gt;</cite></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-decorators">The decorators</a><ul>
+<li><a class="reference internal" href="#direct">&#64;direct</a></li>
+<li><a class="reference internal" href="#admin">&#64;admin</a></li>
+<li><a class="reference internal" href="#and-what-about-no-decorator">And what about &#8220;no decorator&#8221;</a></li>
+<li><a class="reference internal" href="#and-what-happens-if-we-mix-them">And what happens if we mix them?</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a class="reference internal" href="#what-s-next">What&#8217;s next?</a></li>
