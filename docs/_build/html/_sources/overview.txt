@@ -99,3 +99,12 @@ But... your bot won't be able to do much. Here is a sample "dialog"
     22:32 < cmdbot> No`: pong
     22:32 -!- cmdbot [~cmdbot@127.0.0.1] has quit [EOF From client]
 
+License
+=======
+
+This piece of software is published under the terms of the WTFPL  (Do What
+The Fuck You Want License), that can be summed as its term "0":
+
+     0. You just DO WHAT THE FUCK YOU WANT TO.
+
+For more information, go to : <http://sam.zoy.org/wtfpl/>

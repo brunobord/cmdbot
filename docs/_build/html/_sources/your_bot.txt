@@ -59,3 +59,12 @@ and try to talk to it, here is some result
 We've used the :class:`Brain` of our Bot, to tell it to store in-memory who's
 talked to him last. And by asking it `who`, it's able to tell it to us.
 
+What's next?
+============
+
+Well... now, the sky is the limit. Extended bots can manipulate data, remember
+it, treat and process it... And you can still use this bot as a "dumb", if you
+want!
+
+A few more examples will probably appear in the :file:`samples` directory. Stay
+tuned!

@@ -12,3 +12,4 @@ Contents:
 
     overview
     your_bot
+    background
