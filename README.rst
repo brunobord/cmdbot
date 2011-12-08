@@ -30,6 +30,11 @@ The Fuck You Want License), that can be summed as its term "0":
 
 For more information, go to : <http://sam.zoy.org/wtfpl/>
 
+The extensive documentation
+===========================
+
+An extensive documentation can be found at <http://readthedocs.org/docs/cmdbot/>
+
 Install
 =======
 
