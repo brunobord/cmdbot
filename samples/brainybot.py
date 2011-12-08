@@ -24,7 +24,10 @@ class BrainyBot(Bot):
     @direct
     def do_who(self, line):
         "Tell us who talked to you last"
-        self.say("The one that talked to me last: %s" % self.brain.who_said_hello_last)
+        if hasattr(self.brain, 'who_said_hello_last'):
+            self.say("The one that talked to me last: %s" % self.brain.who_said_hello_last)
+        else:
+            self.say("Nobody has talked to me...")
 
 
 if __name__ == '__main__':
