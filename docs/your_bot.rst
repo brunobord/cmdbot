@@ -151,6 +151,18 @@ There comes the beauty of decorators. You can mix them...
 The bot will then only say "hello my lord" if some admin directly told it
 "hello".
 
+Bonus: the welcome message
+--------------------------
+
+Each bot says something when it /joins the chan. If you want a custom message,
+just do something like
+
+.. code-block:: python
+
+    class FrenchBot(Bot):
+        welcome_message = "Bonjour tout le monde !"
+
+
 
 What's next?
 ============
