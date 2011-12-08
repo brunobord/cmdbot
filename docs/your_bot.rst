@@ -4,6 +4,7 @@ Your Own Bot
 
 Okay, so this dumb bot can't do much, can it? You want something more exciting?
 
+
 Want a more clever bot?
 =======================
 
@@ -15,6 +16,7 @@ Here's how:
 
 You can see a few example of what a "brainy bot" can do, remember by browsing
 the bots available in the "samples" directory.
+
 
 Detailed example: ``brainybot``
 -------------------------------
@@ -76,6 +78,7 @@ about, the `do_<verb>` action is processed.
 The decorators
 --------------
 
+
 @direct
 ~~~~~~~
 
@@ -99,12 +102,12 @@ be executed if someone is directly talking to the Bot.
 The first time, the user didn't talk directly to the bot. The second time, it
 was mentioned, so the bot replied "hello, you"
 
+
 @admin
 ~~~~~~
 
 When a :meth:`do_<stuff>` is decorated by ``@admin`` the code will only be
 executed if the previous lines has been said by an admin.
-
 
 .. code-block:: python
 
@@ -132,6 +135,7 @@ And what about "no decorator"
 Without decorator, the `do_<stuff>`  method will be called each time a line is
 being said by a user. Beware, then, your bot may have a lot of work to do...
 
+
 And what happens if we mix them?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -146,6 +150,7 @@ There comes the beauty of decorators. You can mix them...
 
 The bot will then only say "hello my lord" if some admin directly told it
 "hello".
+
 
 What's next?
 ============
