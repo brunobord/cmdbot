@@ -38,6 +38,18 @@ def admin(func):
     return newfunc
 
 
+def contains(string):
+    "Decorator, only process the line if the author mentionning the designated string"
+    def real_decorator(func):
+        @wraps(func)
+        def newfunc(bot, *args, **kwargs):
+            line = args[0]
+            if string in line.message:
+                return func(bot, *args, **kwargs)
+        return newfunc
+    return real_decorator
+
+
 class Line(object):
     "IRC line"
     def __init__(self, nick, message, direct=False):
