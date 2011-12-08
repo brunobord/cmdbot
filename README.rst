@@ -4,11 +4,11 @@ CmdBot, a bot with `cmd` attitude
 
 
 Introducing CmdBot
-------------------
+==================
 
 CmdBot is an IRC Bot written in Python. It consists of a core module that
-defines a :class:`Bot` class you can extend to fit your needs. It comes with a
-:class:`Brain`, that is to say a simple instance of ``object`` that can contain
+defines a `Bot` class you can extend to fit your needs. It comes with a
+`Brain`, that is to say a simple instance of ``object`` that can contain
 any data you want. That's like a *memory* that lives as long as the Bot is
 working.
 
@@ -56,7 +56,7 @@ two variables **must** be set in it::
 The other vars are optional, and usually default values would suit.
 
 The "admin" value
-~~~~~~~~~~~~~~~~~
+#################
 
 If you want some admin to take this bot over (and you surely need it at some point),
 set the value with a space-separated list of nicks... e.g.::
