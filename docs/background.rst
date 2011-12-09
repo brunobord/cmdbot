@@ -11,7 +11,7 @@ Now with the actual reason...
 
 Yes, yes, yes, I know. "Yet another IRC Bot"... But why oh why oh why did you
 need to make a new one? There are tons of them: `SupyBot
-<http://sourceforge.net/projects/supybot/>`_ `Phenny
+<http://sourceforge.net/projects/supybot/>`_, `Phenny
 <http://inamidst.com/phenny/>`_, and the super-hyper `Hubot
 <https://github.com/github/hubot>`_... Here's the deal, right? There are a lot
 of bots, but all of them suck at one thing: remembering. Usually, these bots
