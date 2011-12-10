@@ -184,7 +184,7 @@ class Bot(object):
                         line = self.parse_line(raw_line)
                         self.process_line(line)
         except KeyboardInterrupt:
-            self.s.send('QUIT :%s' % self.exit_message)
+            self.s.send('QUIT :%s\r\n' % self.exit_message)
             sys.exit("Bot has been shut down. See you.")
 
 
