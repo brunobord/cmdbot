@@ -9,15 +9,14 @@ Every other bot you will want to build with this module can be class that
 extends the Bot main class.
 """
 import sys
-import argparse
-from ConfigParser import SafeConfigParser
 from functools import wraps
 import socket
 import logging
+from cmdbot.core.configs import IniFileConfiguration
+
 logging.basicConfig(level=logging.INFO)
 
 
-# Decorators
 def direct(func):
     "Decorator: only process the line if it's a direct message"
     @wraps(func)
@@ -64,35 +63,6 @@ class Line(object):
         return '<%s: %s>' % (self.nick_from, self.message)
 
 
-class Configuration(object):
-    "Basic Configuration class. Loads a .ini file "
-    def __init__(self):
-        # the only mandatory arguments
-        default_vars = {
-            'port': '6667',
-            'nick': 'cmdbot',
-            'ident': 'cmdbot',
-            'realname': 'Cmd Bot',
-            'admins': '',
-        }
-        parser = argparse.ArgumentParser("CmdBot")
-        parser.add_argument('ini_file',
-            help='path to the ini file to extract configuration from')
-        args = parser.parse_args()
-
-        config = SafeConfigParser()
-        config.read(args.ini_file)
-
-        self.host = config.get('general', 'host')
-        self.chan = str(config.get('general', 'chan'))
-
-        self.port = int(config.get('general', 'port', vars=default_vars))
-        self.nick = config.get('general', 'nick', vars=default_vars)
-        self.ident = config.get('general', 'ident', vars=default_vars)
-        self.realname = config.get('general', 'realname', vars=default_vars)
-        self.admins = config.get('general', 'admins', vars=default_vars).split()
-
-
 class Bot(object):
     "Main bot class"
 
@@ -102,7 +72,7 @@ class Bot(object):
     welcome_message = "Hi everyone."
     exit_message = "Bye, all"
     # One can override this
-    config_class = Configuration
+    config_class = IniFileConfiguration
 
     def __init__(self):
         self.config = self.config_class()
