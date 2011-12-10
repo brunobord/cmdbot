@@ -1,0 +1,20 @@
+CmdBot Changelog
+----------------
+
+CmdBot (v1.0.1)
+
+    * help automatically fetches available commands
+    * help is displaying command docstring if you type: 'help <mycommand>'
+    * documentation is now available on http://rtfd.org/docs/cmdbot
+    * a new configuration module: ArgumentConfiguration. Parameters are loaded
+      through the command line arguments.
+
+
+CmdBot (v1.0.0)
+
+    * initial version
+    * Basic bot
+    * Documentation in README
+    * Extensible (just build you own class via heritage)
+    * Configuration via a ".ini" file.
+    -- Bruno Bord <bruno@jehaisleprintemps.net>  2011-12-07
