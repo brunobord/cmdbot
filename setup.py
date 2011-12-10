@@ -7,7 +7,7 @@ with open('README.rst') as fd:
 
 setup(
     name='cmdbot',
-    version='1.0.0',
+    version='1.0.1',
     packages=['cmdbot'],
     url='https://github.com/brunobord/cmdbot/',
     author="Bruno Bord",
