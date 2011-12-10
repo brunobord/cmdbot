@@ -12,7 +12,7 @@ import sys
 from functools import wraps
 import socket
 import logging
-from cmdbot.core.configs import IniFileConfiguration
+from cmdbot.configs import IniFileConfiguration
 
 logging.basicConfig(level=logging.INFO)
 
