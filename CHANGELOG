@@ -1,6 +1,11 @@
 CmdBot Changelog
 ----------------
 
+Current version (dev)
+
+    * brain "knows" stuff (use its `knows` method)
+    * bugfix: quit properly
+
 CmdBot (v1.0.1)
 
     * help automatically fetches available commands
