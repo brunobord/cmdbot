@@ -163,6 +163,34 @@ just do something like
         welcome_message = "Bonjour tout le monde !"
 
 
+The Configuration you want
+==========================
+
+CmdBot is coming with two available configuration modules. The default one is
+using the "ini file" described in :ref:`the ini file section <ini-file-label>`.
+
+But you can override this using the :class:`ArgumentConfiguration`. Like this
+
+.. code-block:: python
+
+    from cmdbot.core import Bot
+    from cmdbot.configs import ArgumentConfiguration
+
+    class ArgumentBot(Bot):
+        config_class = ArgumentConfiguration
+
+That's it. If you want, you can build your own configuration module. All you have
+to do is to build one that has at least the following available properties (if
+not mentioned, should be a string):
+
+* host
+* chan
+* port - should be an int
+* nick
+* ident
+* realname
+* admins - should be a tuple, a list or any iterable
+
 
 What's next?
 ============

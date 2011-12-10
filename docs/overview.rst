@@ -51,6 +51,8 @@ is sitting.
 
 What you need to make any Bot working now is a nice '.ini' file.
 
+.. _ini-file-label:
+
 The INI file
 ------------
 
