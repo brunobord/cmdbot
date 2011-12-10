@@ -6,6 +6,7 @@ Current version (dev)
     * brain "knows" stuff (use its `knows` method)
     * bugfix: quit properly
 
+
 CmdBot (v1.0.1)
 
     * help automatically fetches available commands
@@ -13,6 +14,7 @@ CmdBot (v1.0.1)
     * documentation is now available on http://rtfd.org/docs/cmdbot
     * a new configuration module: ArgumentConfiguration. Parameters are loaded
       through the command line arguments.
+    -- Bruno Bord <bruno@jehaisleprintemps.net>  2011-12-10
 
 
 CmdBot (v1.0.0)
