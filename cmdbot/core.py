@@ -67,7 +67,13 @@ class Bot(object):
     "Main bot class"
 
     class Brain(object):
-        pass
+
+        def knows(self, key, include_falses=False):
+            """Return True if the brain.key value is known *and* not None.
+            If the "with_none" option is set to True, event the 'false' values
+            (None, '', (), [], etc.) values are counted.
+            """
+            return hasattr(self, key) and (getattr(self, key) or include_falses)
 
     welcome_message = "Hi everyone."
     exit_message = "Bye, all"

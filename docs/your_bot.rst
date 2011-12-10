@@ -1,6 +1,6 @@
-============
-Your Own Bot
-============
+==================
+Build Your Own Bot
+==================
 
 Okay, so this dumb bot can't do much, can it? You want something more exciting?
 
@@ -39,7 +39,7 @@ in its code
         @direct
         def do_who(self, line):
             "Tell us who talked to you last"
-            if hasattr(self.brain, 'who_said_hello_last'):
+            if self.brain.knows('who_said_hello_last'):
                 self.say("The one that talked to me last: %s" % self.brain.who_said_hello_last)
             else:
                 self.say("Nobody has talked to me...")
@@ -60,6 +60,24 @@ and try to talk to it, here is some result
 
 We've used the :class:`Brain` of our Bot, to tell it to store in-memory who's
 talked to him last. And by asking it `who`, it's able to tell it to us.
+
+Please note the :meth:`knows` method, that returns `True` if the brain has an
+"interesting" value (i.e. not "None", or empty string, list, tuple, etc).
+You can just test wether the lookuped key is present in the brain by using the
+optional `include_falses` argument.
+
+.. code-block:: python
+
+    >>> bot.brain.knows('stuff')
+    False
+    >>> bot.brain.stuff = ''
+    >>> bot.brain.knows('stuff')
+    False
+    >>> bot.brain.knows('stuff', include_falses=True)
+    True
+    >>> bot.brain.stuff = 'hello'
+    >>> bot.brain.knows('stuff')
+    True
 
 
 The `do_<trick>`
