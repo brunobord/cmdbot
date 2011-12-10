@@ -1,5 +1,3 @@
-import argparse
-from ConfigParser import SafeConfigParser
 from cmdbot.core import Bot, direct
 
 """This bot "remembers" who spoke to it last. Example:
@@ -31,12 +29,5 @@ class BrainyBot(Bot):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser("BrainyBot")
-    parser.add_argument('ini_file',
-        help='path to the ini file to extract configuration from')
-    args = parser.parse_args()
-
-    config = SafeConfigParser()
-    config.read(args.ini_file)
-    bot = BrainyBot(config)
+    bot = BrainyBot()
     bot.run()
