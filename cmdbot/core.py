@@ -82,10 +82,9 @@ class Bot(object):
 
         self.available_functions = []
         for name in dir(self):
-            if name.startswith('do_'):
-                func = getattr(self, name)
-                if callable(func):
-                    self.available_functions.append(name.replace('do_', ''))
+            func = getattr(self, name)
+            if callable(func) and name.startswith('do_'):
+                self.available_functions.append(name.replace('do_', ''))
 
         self.s = socket.socket()
 
