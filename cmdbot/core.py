@@ -12,13 +12,15 @@ import sys
 from functools import wraps
 import socket
 import logging
+logging.basicConfig(level=logging.INFO)
 import gettext
-from gettext import gettext as _
+#i18n installation
+t = gettext.translation('cmdbot', 'locale', languages=['fr'])
+t.install()
+_ = t.gettext
+
 from cmdbot.configs import IniFileConfiguration
 
-logging.basicConfig(level=logging.INFO)
-#i18n installation
-gettext.install('cmdbot')
 
 def direct(func):
     "Decorator: only process the line if it's a direct message"
