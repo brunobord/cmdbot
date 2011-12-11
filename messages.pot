@@ -1,53 +1,59 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR ORGANIZATION
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-12-11 15:38+CET\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-12-11 15:52+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
-"Content-Transfer-Encoding: ENCODING\n"
-"Generated-By: pygettext.py 1.5\n"
+"Content-Transfer-Encoding: 8bit\n"
 
-
-#: cmdbot/core.py:79
+#: cmdbot/core.py:81
 msgid "Hi everyone."
 msgstr ""
 
-#: cmdbot/core.py:80
+#: cmdbot/core.py:82
 msgid "Bye, all"
 msgstr ""
 
-#: cmdbot/core.py:100
+#: cmdbot/core.py:102
 msgid "Connection to host..."
 msgstr ""
 
-#: cmdbot/core.py:140
-msgid "%s: I have no clue..."
+#: cmdbot/core.py:142
+#, python-format
+msgid "%(nick)s: I have no clue..."
 msgstr ""
 
-#: cmdbot/core.py:152
-msgid "%s: pong"
+#: cmdbot/core.py:154
+#, python-format
+msgid "%(nick)s: pong"
 msgstr ""
 
-#: cmdbot/core.py:157
-msgid "%s: you need some help? Here is some..."
+#: cmdbot/core.py:159
+#, python-format
+msgid "%(nick)s: you need some help? Here is some..."
 msgstr ""
 
-#: cmdbot/core.py:161
-msgid "Available commands: %s"
+#: cmdbot/core.py:164
+#, python-format
+msgid "Available commands: %(commands)s"
 msgstr ""
 
-#: cmdbot/core.py:168
-msgid "Sorry, command \"%s\" unknown"
+#: cmdbot/core.py:172
+#, python-format
+msgid "Sorry, command \"%(command)s\" unknown"
 msgstr ""
 
-#: cmdbot/core.py:189
+#: cmdbot/core.py:194
 msgid "Bot has been shut down. See you."
 msgstr ""
-

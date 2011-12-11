@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#-*- coding: utf -*-
+#-*- coding: utf-8 -*-
 """Cmd Bot, a bot with a brainy cmd attitude.
 
 This is the core bot module. It's already usable, even if you can't actually
@@ -12,11 +12,13 @@ import sys
 from functools import wraps
 import socket
 import logging
+import gettext
 from gettext import gettext as _
 from cmdbot.configs import IniFileConfiguration
 
 logging.basicConfig(level=logging.INFO)
-
+#i18n installation
+gettext.install('cmdbot')
 
 def direct(func):
     "Decorator: only process the line if it's a direct message"
@@ -137,7 +139,7 @@ class Bot(object):
         except AttributeError:
             if line.direct:
                 # it's an instruction, we didn't get it.
-                self.say(_("%s: I have no clue...") % line.nick_from)
+                self.say(_("%(nick)s: I have no clue...") % {'nick': line.nick_from})
         if func:
             return func(line)
 
@@ -149,23 +151,26 @@ class Bot(object):
     @direct
     def do_ping(self, line):
         "(direct) Reply 'pong'"
-        self.say(_("%s: pong") % line.nick_from)
+        self.say(_("%(nick)s: pong") % {'nick': line.nick_from})
 
     @direct
     def do_help(self, line):
         "(direct) Gives some help"
-        self.say(_('%s: you need some help? Here is some...') % line.nick_from)
+        self.say(_('%(nick)s: you need some help? Here is some...')
+            % {'nick': line.nick_from})
 
         splitted = line.message.split()
         if len(splitted) == 1:
-            self.say(_('Available commands: %s') % ', '.join(self.available_functions))
+            self.say(_('Available commands: %(commands)s')
+                % {'commands': ', '.join(self.available_functions)})
         else:
             command_name = splitted[1]
             try:
                 func = getattr(self, 'do_%s' % command_name)
                 self.say('%s: %s' % (command_name, func.__doc__))
             except AttributeError:
-                self.say(_('Sorry, command "%s" unknown') % command_name)
+                self.say(_('Sorry, command "%(command)s" unknown')
+                    % {'command': command_name})
 
     def run(self):
         "Main programme. Connect to server and start listening"
