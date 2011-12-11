@@ -13,11 +13,10 @@ from functools import wraps
 import socket
 import logging
 logging.basicConfig(level=logging.INFO)
-import gettext
 #i18n installation
-t = gettext.translation('cmdbot', 'locale', languages=['fr'])
-t.install()
-_ = t.gettext
+import gettext
+gettext.install('cmdbot', 'locale')
+_ = gettext.gettext
 
 from cmdbot.configs import IniFileConfiguration
 
