@@ -8,15 +8,17 @@ use it for something interesting.
 Every other bot you will want to build with this module can be class that
 extends the Bot main class.
 """
+import os
 import sys
 from functools import wraps
 import socket
 import logging
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.DEBUG)
 #i18n installation
 import gettext
 try:
-    t = gettext.translation('cmdbot', 'locale')
+    locale_path = os.path.join(os.path.dirname(os.path.abspath('.')), 'locale')
+    t = gettext.translation('cmdbot', locale_path)
     t.install()
     _ = t.gettext
 except:
