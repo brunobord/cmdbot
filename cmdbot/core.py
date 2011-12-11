@@ -15,12 +15,12 @@ import logging
 logging.basicConfig(level=logging.INFO)
 #i18n installation
 import gettext
-_ = gettext.gettext
 try:
     t = gettext.translation('cmdbot', 'locale')
     t.install()
     _ = t.gettext
 except:
+    _ = gettext.gettext
     logging.info("Translation Not Found. Fallback to default")
 
 from cmdbot.configs import IniFileConfiguration
