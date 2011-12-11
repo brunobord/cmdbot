@@ -12,6 +12,7 @@ import sys
 from functools import wraps
 import socket
 import logging
+from gettext import gettext as _
 from cmdbot.configs import IniFileConfiguration
 
 logging.basicConfig(level=logging.INFO)
@@ -75,8 +76,8 @@ class Bot(object):
             """
             return hasattr(self, key) and (getattr(self, key) or include_falses)
 
-    welcome_message = "Hi everyone."
-    exit_message = "Bye, all"
+    welcome_message = _("Hi everyone.")
+    exit_message = _("Bye, all")
     # One can override this
     config_class = IniFileConfiguration
 
@@ -96,7 +97,7 @@ class Bot(object):
 
     def connect(self):
         "Connect to the server and join the chan"
-        logging.info("Connection to host...")
+        logging.info(_("Connection to host..."))
         self.s.connect((self.config.host, self.config.port))
         self.s.send("NICK %s\r\n" % self.config.nick)
         self.s.send("USER %s %s bla :%s\r\n" % (
@@ -136,7 +137,7 @@ class Bot(object):
         except AttributeError:
             if line.direct:
                 # it's an instruction, we didn't get it.
-                self.say("%s: I have no clue..." % line.nick_from)
+                self.say(_("%s: I have no clue...") % line.nick_from)
         if func:
             return func(line)
 
@@ -148,23 +149,23 @@ class Bot(object):
     @direct
     def do_ping(self, line):
         "(direct) Reply 'pong'"
-        self.say("%s: pong" % line.nick_from)
+        self.say(_("%s: pong") % line.nick_from)
 
     @direct
     def do_help(self, line):
         "(direct) Gives some help"
-        self.say('%s: you need some help? Here is some...' % line.nick_from)
+        self.say(_('%s: you need some help? Here is some...') % line.nick_from)
 
         splitted = line.message.split()
         if len(splitted) == 1:
-            self.say('Available commands: %s' % ', '.join(self.available_functions))
+            self.say(_('Available commands: %s') % ', '.join(self.available_functions))
         else:
             command_name = splitted[1]
             try:
                 func = getattr(self, 'do_%s' % command_name)
                 self.say('%s: %s' % (command_name, func.__doc__))
             except AttributeError:
-                self.say('Sorry, command "%s" unknown' % command_name)
+                self.say(_('Sorry, command "%s" unknown') % command_name)
 
     def run(self):
         "Main programme. Connect to server and start listening"
@@ -185,7 +186,7 @@ class Bot(object):
                         self.process_line(line)
         except KeyboardInterrupt:
             self.s.send('QUIT :%s\r\n' % self.exit_message)
-            sys.exit("Bot has been shut down. See you.")
+            sys.exit(_("Bot has been shut down. See you."))
 
 
 if __name__ == '__main__':

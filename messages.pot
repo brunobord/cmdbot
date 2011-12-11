@@ -1,0 +1,53 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2011-12-11 15:38+CET\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: ENCODING\n"
+"Generated-By: pygettext.py 1.5\n"
+
+
+#: cmdbot/core.py:79
+msgid "Hi everyone."
+msgstr ""
+
+#: cmdbot/core.py:80
+msgid "Bye, all"
+msgstr ""
+
+#: cmdbot/core.py:100
+msgid "Connection to host..."
+msgstr ""
+
+#: cmdbot/core.py:140
+msgid "%s: I have no clue..."
+msgstr ""
+
+#: cmdbot/core.py:152
+msgid "%s: pong"
+msgstr ""
+
+#: cmdbot/core.py:157
+msgid "%s: you need some help? Here is some..."
+msgstr ""
+
+#: cmdbot/core.py:161
+msgid "Available commands: %s"
+msgstr ""
+
+#: cmdbot/core.py:168
+msgid "Sorry, command \"%s\" unknown"
+msgstr ""
+
+#: cmdbot/core.py:189
+msgid "Bot has been shut down. See you."
+msgstr ""
+
