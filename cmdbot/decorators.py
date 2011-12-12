@@ -15,7 +15,7 @@ def admin(func):
     "Decorator, only process the line if the author is in the admin list"
     @wraps(func)
     def newfunc(bot, line):
-        if line.nick_from in bot.admins:
+        if line.nick_from in bot.config.admins:
             return func(bot, line)
     return newfunc
 
