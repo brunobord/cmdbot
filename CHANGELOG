@@ -5,6 +5,10 @@ Current version (dev)
 
     * brain "knows" stuff (use its `knows` method)
     * bugfix: quit properly
+    * localisation / translation of basic bot lines (only language available
+      ATM: French. What a surprise, huh?)
+    * a new sample: `samples/gamebot.py`
+    * cleanup / refactoring of decorators.
 
 
 CmdBot (v1.0.1)
@@ -14,6 +18,7 @@ CmdBot (v1.0.1)
     * documentation is now available on http://rtfd.org/docs/cmdbot
     * a new configuration module: ArgumentConfiguration. Parameters are loaded
       through the command line arguments.
+    * a new sample: `samples/argbot.py`
     -- Bruno Bord <bruno@jehaisleprintemps.net>  2011-12-10
 
 
