@@ -169,6 +169,39 @@ There comes the beauty of decorators. You can mix them...
 The bot will then only say "hello my lord" if some admin directly told it
 "hello".
 
+Your own decorator
+~~~~~~~~~~~~~~~~~~
+
+Right. You can "prefix" any action with your own decorator, if you want this
+action to be called only following a certain condition or a subset of
+conditions. Your "Bot's Brain" might help. Here's a simple example, taken from
+the :file:`samples/gamebot.py`:
+
+.. code-block:: python
+
+    def in_game(func):
+        "Decorator: only process the line game has been started with the player"
+        @wraps(func)
+        def newfunc(bot, line):
+            if bot.brain.knows('games') and line.nick_from in bot.brain.games:
+                return func(bot, line)
+            else:
+                bot.say("Erm. Looks like we didn't start playing.")
+        return newfunc
+
+In this snippet, we're defining a decorator that will only process the command
+if the "game" has been started with the player.
+
+
+After that, you can use the decorator like this:
+
+.. code-block:: python
+
+    @in_game
+    def do_roll(self, line):
+        # ...
+
+
 Bonus: the welcome message
 --------------------------
 
