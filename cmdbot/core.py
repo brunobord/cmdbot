@@ -31,20 +31,18 @@ from cmdbot.configs import IniFileConfiguration
 def direct(func):
     "Decorator: only process the line if it's a direct message"
     @wraps(func)
-    def newfunc(bot, *args, **kwargs):
-        line = args[0]
+    def newfunc(bot, line):
         if line.direct:
-            return func(bot, *args, **kwargs)
+            return func(bot, line)
     return newfunc
 
 
 def admin(func):
     "Decorator, only process the line if the author is in the admin list"
     @wraps(func)
-    def newfunc(bot, *args, **kwargs):
-        line = args[0]
+    def newfunc(bot, line):
         if line.nick_from in bot.admins:
-            return func(bot, *args, **kwargs)
+            return func(bot, line)
     return newfunc
 
 
@@ -52,10 +50,9 @@ def contains(string):
     "Decorator, only process the line if the author mentionning the designated string"
     def real_decorator(func):
         @wraps(func)
-        def newfunc(bot, *args, **kwargs):
-            line = args[0]
+        def newfunc(bot, line):
             if string in line.message:
-                return func(bot, *args, **kwargs)
+                return func(bot, line)
         return newfunc
     return real_decorator
 
