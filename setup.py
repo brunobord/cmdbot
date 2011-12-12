@@ -1,8 +1,9 @@
 #!/usr/bin/env python
-
+import os
 from distutils.core import setup
+curdir = os.path.abspath(os.path.dirname(__file__))
 
-with open('README.rst') as fd:
+with open(os.path.join(curdir, 'README.rst')) as fd:
     long_description = fd.read()
 
 setup(
