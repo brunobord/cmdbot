@@ -99,8 +99,8 @@ Here's how:
 * add it a few "do_[stuff]" commands
 * make it more clever, by using its "brain"
 
-You can see a few example of what a "brainy bot" can do, remember by browsing
-the bots available in the "samples" directory.
+You can see a few example of what a "brainy bot" can do in the :file:`samples`
+directory.
 
 What's next?
 ============
@@ -108,4 +108,3 @@ What's next?
 Well... now, the sky is the limit. Extended bots can manipulate data, remember
 it, treat and process it... And you can still use this bot as a "dumb", if you
 want!
-
