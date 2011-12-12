@@ -1,1 +1,2 @@
+README.rst
 recursive-include locale *.mo
