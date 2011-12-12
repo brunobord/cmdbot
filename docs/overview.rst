@@ -6,7 +6,7 @@ CmdBot is an IRC Bot written in Python. It consists of a core module that
 defines a :class:`Bot` class you can extend to fit your needs. It comes with a
 :class:`Brain`, that is to say a simple instance of ``object`` that can contain
 any data you want. That's like a *memory* that lives as long as the Bot is
-working.
+working:
 
 .. warning::
 
@@ -24,7 +24,7 @@ CmdBot is hosted on Github. If you want the latest code, go fetch it here:
 
 https://github.com/brunobord/cmdbot
 
-You can install the program using
+You can install the program using:
 
 .. code-block:: sh
 
@@ -35,7 +35,7 @@ The latest releases
 
 You can fetch and install the bot library using its `PyPI
 <http://pypi.python.org/pypi/cmdbot/1.0.0>`_ version. If you are using pip and/or
-virtualenv, just type
+virtualenv, just type:
 
 .. code-block:: sh
 
@@ -58,7 +58,7 @@ The INI file
 
 This file stores the basic configuration for you bot.  You can use the sample
 bot.ini file that sits in the source code, or edit your own. You just have to
-know that only two variables **must** be set in it
+know that only two variables **must** be set in it:
 
 .. code-block:: ini
 
@@ -82,13 +82,13 @@ line **only** if the user that has send the order is in this nick list.
 Dumb Bot Usage
 --------------
 
-It's as simple as
+It's as simple as:
 
 .. code-block:: sh
 
     python /path/to/cmdbot/core.py /path/to/your/bot.ini
 
-But... your bot won't be able to do much. Here is a sample "dialog"
+But... your bot won't be able to do much. Here is a sample "dialog":
 
 .. code-block:: irc
 

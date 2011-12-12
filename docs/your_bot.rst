@@ -22,7 +22,7 @@ Detailed example: ``brainybot``
 -------------------------------
 
 BrainyBot is a class that resides in the :file:`samples` directory. Let's dive
-in its code
+in its code:
 
 .. code-block:: python
 
@@ -47,7 +47,7 @@ in its code
 
 Since :class:`BrainyBot` extends the :class:`Bot` class, it already knows how to
 "ping" and how to "help" you. If we run it (using an appopriate '.ini' file),
-and try to talk to it, here is some result
+and try to talk to it, here is some result:
 
 .. code-block:: irc
 
@@ -64,7 +64,7 @@ talked to him last. And by asking it `who`, it's able to tell it to us.
 Please note the :meth:`knows` method, that returns `True` if the brain has an
 "interesting" value (i.e. not "None", or empty string, list, tuple, etc).
 You can just test wether the lookuped key is present in the brain by using the
-optional `include_falses` argument.
+optional `include_falses` argument:
 
 .. code-block:: python
 
@@ -86,7 +86,7 @@ The `do_<trick>`
 You may have noticed that every new thing your bot knows to do is prefixed by
 ``do_``. That's the trick. When someone on the channel says something, the bot
 analyses it. If the first word of the message is a ``verb`` your bot knows
-about, the `do_<verb>` action is processed.
+about, the `do_<verb>` action is processed:
 
 .. note::
 
@@ -101,7 +101,7 @@ The decorators
 ~~~~~~~
 
 Whenever a :meth:`do_<stuff>` method is decorated by ``@direct``, it will only
-be executed if someone is directly talking to the Bot.
+be executed if someone is directly talking to the Bot:
 
 .. code-block:: python
 
@@ -125,7 +125,7 @@ was mentioned, so the bot replied "hello, you"
 ~~~~~~
 
 When a :meth:`do_<stuff>` is decorated by ``@admin`` the code will only be
-executed if the previous lines has been said by an admin.
+executed if the previous lines has been said by an admin:
 
 .. code-block:: python
 
@@ -157,7 +157,7 @@ being said by a user. Beware, then, your bot may have a lot of work to do...
 And what happens if we mix them?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-There comes the beauty of decorators. You can mix them...
+There comes the beauty of decorators. You can mix them:
 
 .. code-block:: python
 
@@ -206,7 +206,7 @@ Bonus: the welcome message
 --------------------------
 
 Each bot says something when it /joins the chan. If you want a custom message,
-just do something like
+just do something like:
 
 .. code-block:: python
 
@@ -220,7 +220,7 @@ The Configuration you want
 CmdBot is coming with two available configuration modules. The default one is
 using the "ini file" described in :ref:`the ini file section <ini-file-label>`.
 
-But you can override this using the :class:`ArgumentConfiguration`. Like this
+But you can override this using the :class:`ArgumentConfiguration`. Like this:
 
 .. code-block:: python
 
