@@ -99,7 +99,7 @@ Here's how:
 * add it a few "do_[stuff]" commands
 * make it more clever, by using its "brain"
 
-You can see a few example of what a "brainy bot" can do in the :file:`samples`
+You can see a few example of what a "brainy bot" can do in the `samples`
 directory.
 
 What's next?
