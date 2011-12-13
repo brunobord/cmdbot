@@ -1,7 +1,11 @@
 CmdBot Changelog
 ----------------
 
-Current version (dev)
+CmdBot (v1.0.3)
+
+   * Important bugfix with the "admins" configuration loading.
+
+CmdBot (v1.0.2)
 
     * brain "knows" stuff (use its `knows` method)
     * bugfix: quit properly
