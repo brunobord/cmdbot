@@ -121,7 +121,6 @@ class Bot(object):
 
     def _raw_ping(self, line):
         "Raw PING/PONG game. Prevent your bot from being disconnected by server"
-        logging.debug(line)
         self.s.send(line.replace('PING', 'PONG'))
 
     @direct

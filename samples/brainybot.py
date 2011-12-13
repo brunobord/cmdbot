@@ -1,4 +1,5 @@
-from cmdbot.core import Bot, direct
+from cmdbot.core import Bot
+from cmdbot.decorators import direct, admin
 
 """This bot "remembers" who spoke to it last. Example:
 
@@ -27,6 +28,10 @@ class BrainyBot(Bot):
         else:
             self.say("Nobody has talked to me...")
 
+    @admin
+    def do_admins(self, line):
+        "Tell the people who's the boss"
+        self.say("My bosses: %s" % ', '.join(self.admins))
 
 if __name__ == '__main__':
     bot = BrainyBot()

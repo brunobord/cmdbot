@@ -16,7 +16,18 @@ DEFAULT_VARS = {
 }
 
 
-class IniFileConfiguration(object):
+class GenericConfiguration(object):
+
+    def __repr__(self):
+        result = []
+        keys = ('host', 'chan', 'port', 'nick')
+        for key in keys:
+            result.append('* %s' % getattr(self, key))
+        result.append('* %s' % ', '.join(self.admins))
+        return '\n'.join(result)
+
+
+class IniFileConfiguration(GenericConfiguration):
     "Basic Configuration class. Loads a .ini file "
     def __init__(self):
         parser = argparse.ArgumentParser("CmdBot")
@@ -35,10 +46,19 @@ class IniFileConfiguration(object):
         self.nick = config.get('general', 'nick', vars=DEFAULT_VARS)
         self.ident = config.get('general', 'ident', vars=DEFAULT_VARS)
         self.realname = config.get('general', 'realname', vars=DEFAULT_VARS)
-        self.admins = config.get('general', 'admins', vars=DEFAULT_VARS).split()
+        # special case: admins
+        if config.has_option("general", "admins"):
+            admins = config.get('general', 'admins')
+            if ',' in admins:
+                admins = admins.split()
+            else:
+                admins = [admins]
+        else:
+            admins = []
+        self.admins = admins
 
 
-class ArgumentConfiguration(object):
+class ArgumentConfiguration(GenericConfiguration):
     "Argument-based configuration."
     def __init__(self):
         parser = argparse.ArgumentParser("CmdBot")
