@@ -1,6 +1,10 @@
 CmdBot Changelog
 ----------------
 
+Current version (dev)
+
+    * Bugfixes: prevent unicode errors
+
 CmdBot (v1.0.3)
 
    * Important bugfix with the "admins" configuration loading.
