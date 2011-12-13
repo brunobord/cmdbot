@@ -31,8 +31,8 @@ from cmdbot.decorators import direct
 class Line(object):
     "IRC line"
     def __init__(self, nick, message, direct=False):
-        self.nick_from = str(nick)
-        self.message = str(message.lower())
+        self.nick_from = nick
+        self.message = message.lower()
         self.verb = ''
         if self.message:
             self.verb = self.message.split()[0]
@@ -111,7 +111,9 @@ class Bot(object):
         "Process the Line object"
         func = None
         try:
-            func = getattr(self, 'do_' + line.verb)
+            func = getattr(self, 'do_%s' % line.verb)
+        except UnicodeEncodeError:
+            pass  # Do nothing, it won't work.
         except AttributeError:
             if line.direct:
                 # it's an instruction, we didn't get it.
