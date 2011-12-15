@@ -32,6 +32,7 @@ class Line(object):
     "IRC line"
     def __init__(self, nick, message, direct=False):
         self.nick_from = nick
+        self._raw_message = message
         self.message = message.lower()
         self.verb = ''
         if self.message:
