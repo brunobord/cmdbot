@@ -214,6 +214,20 @@ just do something like:
         welcome_message = "Bonjour tout le monde !"
 
 
+More Bonus: command aliases
+---------------------------
+
+You may want to define aliases for any command, like this:
+
+.. code-block:: python
+
+    def do_foo(self, line):
+        self.say('I do foo or bar')
+    do_bar = do_foo
+
+You won't have to worry about decorated methods, and such. Everything will work
+exactly the same.
+
 The Configuration you want
 ==========================
 
