@@ -12,4 +12,5 @@ Contents:
 
     overview
     your_bot
+    advanced_usage
     background
