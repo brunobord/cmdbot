@@ -67,11 +67,14 @@ class Bot(object):
         self.brain = self.Brain()  # this brain can contain *anything* you want.
 
         self.available_functions = []
+        self.no_verb_functions = []
         for name in dir(self):
             func = getattr(self, name)
-            if callable(func) and name.startswith('do_'):
-                self.available_functions.append(name.replace('do_', ''))
-
+            if callable(func):
+                if name.startswith('do_'):
+                    self.available_functions.append(name.replace('do_', ''))
+                if hasattr(func, 'no_verb_function'):
+                    self.no_verb_functions.append(func)
         self.s = socket.socket()
 
     def connect(self):
@@ -108,6 +111,12 @@ class Bot(object):
         # actually return the Line object
         return Line(nick_from, message, direct)
 
+    def process_noverb(self, line):
+        """Process the no-verb lines
+        (i.e. a line with a first verb unreferenced in the do_<verb> methods."""
+        for func in self.no_verb_functions:
+            func(line)
+
     def process_line(self, line):
         "Process the Line object"
         func = None
@@ -119,6 +128,7 @@ class Bot(object):
             if line.direct:
                 # it's an instruction, we didn't get it.
                 self.say(_("%(nick)s: I have no clue...") % {'nick': line.nick_from})
+            self.process_noverb(line)
         if func:
             return func(line)
 

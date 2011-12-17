@@ -29,3 +29,10 @@ def contains(string):
                 return func(bot, line)
         return newfunc
     return real_decorator
+
+
+def no_verb_function(func):
+    """Decorator: define a function that will be executed if no verb is found
+    in the line"""
+    func.no_verb_function = True
+    return func
