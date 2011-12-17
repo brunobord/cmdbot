@@ -7,6 +7,8 @@ Current version (dev)
     * Documentation: how to add command aliases
     * Helper: _raw_message, a half-hidden raw string showing the non-parsed
       message
+    * new decorator: @no_verb_function, to execute one or several actions each
+      time someone says anything.
 
 CmdBot (v1.0.3)
 
