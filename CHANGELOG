@@ -1,7 +1,7 @@
 CmdBot Changelog
 ----------------
 
-Current version (dev)
+CmdBot (v1.0.4)
 
     * Bugfixes: prevent unicode errors
     * Documentation: how to add command aliases

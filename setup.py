@@ -8,7 +8,7 @@ with open(os.path.join(curdir, 'README.rst')) as fd:
 
 setup(
     name='cmdbot',
-    version='1.0.3',
+    version='1.0.4',
     packages=['cmdbot'],
     url='https://github.com/brunobord/cmdbot/',
     author="Bruno Bord",
