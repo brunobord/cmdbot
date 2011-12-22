@@ -68,6 +68,7 @@ class Bot(object):
 
         self.available_functions = []
         self.no_verb_functions = []
+        self.no_help_functions = []
         for name in dir(self):
             func = getattr(self, name)
             if callable(func):
@@ -75,6 +76,11 @@ class Bot(object):
                     self.available_functions.append(name.replace('do_', ''))
                 if hasattr(func, 'no_verb'):
                     self.no_verb_functions.append(func)
+                if hasattr(func, "no_help"):
+                    self.no_help_functions.append(func)
+                    # little trick. helps finding out if function is decorated
+                    self.no_help_functions.append(name.replace('do_', ''))
+        logging.debug(self.no_help_functions)
         self.s = socket.socket()
 
     def connect(self):
@@ -150,11 +156,13 @@ class Bot(object):
         splitted = line.message.split()
         if len(splitted) == 1:
             self.say(_('Available commands: %(commands)s')
-                % {'commands': ', '.join(self.available_functions)})
+                % {'commands': ', '.join(func for func in self.available_functions if func not in self.no_help_functions)})
         else:
             command_name = splitted[1]
             try:
                 func = getattr(self, 'do_%s' % command_name)
+                if func in self.no_help_functions:
+                    raise AttributeError
                 self.say('%s: %s' % (command_name, func.__doc__))
             except AttributeError:
                 self.say(_('Sorry, command "%(command)s" unknown')

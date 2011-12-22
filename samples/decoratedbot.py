@@ -4,7 +4,7 @@
 """
 
 from cmdbot.core import Bot
-from cmdbot.decorators import direct, admin, no_verb
+from cmdbot.decorators import direct, admin, no_verb, no_help
 from cmdbot.configs import ArgumentConfiguration
 
 
@@ -28,6 +28,10 @@ class ArgumentBot(Bot):
     def nothing_special(self, line):
         self.say('I say nothing special, you did not include a known verb')
 
+    @no_help
+    def do_nohelp(self):
+        "I will never display this"
+        pass
 
 if __name__ == '__main__':
     bot = ArgumentBot()

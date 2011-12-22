@@ -36,3 +36,9 @@ def no_verb(func):
     in the line"""
     func.no_verb = True
     return func
+
+
+def no_help(func):
+    """Decorator: define a function that will never display its help if asked"""
+    func.no_help = True
+    return func
