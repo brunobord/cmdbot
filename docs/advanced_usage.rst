@@ -132,3 +132,24 @@ of your Bot class, even a method that doesn't start with a "do\_". e.g:
     @no_verb
     def nothing_special(self, line):
         self.say('I say nothing special, you did not include a known verb')
+
+Do not want help
+----------------
+
+It may happen that you'd need to discard help on a particular function. Many
+use cases:
+
+* You don't want your users to know that this command exists
+* You don't want users to know how to execute a given command (your help line
+  would make it too easy for them)
+* You want to clean the raw `help` command, in order to have as few items as
+  needed
+
+You just need to decorate your function like this:
+
+.. code-block:: python
+
+    @no_help
+    def do_nohelp(self, line):
+        "I will never be displayed"
+        pass

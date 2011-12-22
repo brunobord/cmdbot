@@ -9,6 +9,7 @@ Current version (dev)
       message
     * new decorator: @no_verb, to execute one or several actions each time
       someone says anything.
+    * new decorator: @no_help, to discard help display.
 
 CmdBot (v1.0.3)
 
