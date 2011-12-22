@@ -4,7 +4,7 @@
 """
 
 from cmdbot.core import Bot
-from cmdbot.decorators import direct, admin, no_verb_function
+from cmdbot.decorators import direct, admin, no_verb
 from cmdbot.configs import ArgumentConfiguration
 
 
@@ -24,7 +24,7 @@ class ArgumentBot(Bot):
     def do_direct_admin(self, line):
         self.say("I only say that because you summon me as an admin")
 
-    @no_verb_function
+    @no_verb
     def nothing_special(self, line):
         self.say('I say nothing special, you did not include a known verb')
 

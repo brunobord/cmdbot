@@ -73,7 +73,7 @@ class Bot(object):
             if callable(func):
                 if name.startswith('do_'):
                     self.available_functions.append(name.replace('do_', ''))
-                if hasattr(func, 'no_verb_function'):
+                if hasattr(func, 'no_verb'):
                     self.no_verb_functions.append(func)
         self.s = socket.socket()
 

@@ -31,8 +31,8 @@ def contains(string):
     return real_decorator
 
 
-def no_verb_function(func):
+def no_verb(func):
     """Decorator: define a function that will be executed if no verb is found
     in the line"""
-    func.no_verb_function = True
+    func.no_verb = True
     return func

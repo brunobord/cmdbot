@@ -124,12 +124,11 @@ You may sometimes need to execute a function when somebody talks, or when a
 special word is said **inside** a line, and not only at its beginning (a.k.a. a
 regular "verb").
 
-The ``@no_verb_function`` decorator is here to help. You can decorate any method
+The ``@no_verb`` decorator is here to help. You can decorate any method
 of your Bot class, even a method that doesn't start with a "do\_". e.g:
 
 .. code-block:: python
 
-    @no_verb_function
+    @no_verb
     def nothing_special(self, line):
         self.say('I say nothing special, you did not include a known verb')
-
