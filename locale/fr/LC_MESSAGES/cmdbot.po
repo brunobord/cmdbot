@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: CmdBot\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-12-11 15:52+0100\n"
-"PO-Revision-Date: 2011-12-11 15:57+0100\n"
+"PO-Revision-Date: 2012-03-25 22:09+0100\n"
 "Last-Translator: Bruno Bord <bruno@jehaisleprintemps.net>\n"
 "Language-Team: French <bruno@jehaisleprintemps.net>\n"
 "Language: fr\n"
@@ -46,7 +46,7 @@ msgstr "%(nick)s: pong"
 #: cmdbot/core.py:159
 #, python-format
 msgid "%(nick)s: you need some help? Here is some..."
-msgstr "%(nick)s: besoin d'aide ? en voilà..."
+msgstr "%(nick)s: besoin d'aide ? en voici..."
 
 #: cmdbot/core.py:164
 #, python-format

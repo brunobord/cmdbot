@@ -150,7 +150,7 @@ class Bot(object):
     @direct
     def do_help(self, line):
         "(direct) Gives some help"
-        self.say(_('%(nick)s: you need some help? Here is some...')
+        self.say(_("%(nick)s: you need some help? Here is some...")
             % {'nick': line.nick_from})
 
         splitted = line.message.split()
