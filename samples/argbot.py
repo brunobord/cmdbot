@@ -12,7 +12,8 @@ Or, if you want to customize your arguments::
     python argbot.py name.my.server mychannel --nick=specialbot --admins=me,myself
 
 """
-from cmdbot.core import Bot, direct, admin
+from cmdbot.core import Bot
+from cmdbot.decorators import direct, admin
 from cmdbot.configs import ArgumentConfiguration
 
 
