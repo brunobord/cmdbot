@@ -4,7 +4,7 @@ handle bot parameters.
 
 """
 import os
-#import argparse
+import argparse
 from ConfigParser import SafeConfigParser
 
 # these arguments have a default value.
