@@ -17,4 +17,5 @@ setup(
     platforms='any',
     description="An IRC Bot with a `cmd` attitude",
     long_description=long_description,
+    install_requires=['argparse']
 )
