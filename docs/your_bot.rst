@@ -126,6 +126,26 @@ You may want to define aliases for any command, like this:
 You won't have to worry about decorated methods, and such. Everything will work
 exactly the same.
 
+The ``/me`` support
+-------------------
+
+Instead of using the :func:`self.say` method, you may alternatively use the
+:func:`self.me` method, with will emulate when you are using the well-known
+``/me`` IRC command.
+
+.. code-block:: python
+
+    def do_foo(self, line):
+        self.say("I am a bot")
+        self.me("is a bot")
+
+will result as:
+
+.. code-block:: irc
+
+    <cmdbot>: I am a bot
+    * cmdbot is a bot
+
 The Configuration you want
 ==========================
 
@@ -163,7 +183,7 @@ Environment variables
 Alternatively, you may want to configure the bot via your environment variables.
 For example:
 
-.. code-block::
+.. code-block:: python
 
     from cmdbot.core import Bot
     from cmdbot.configs import EnvironmentConfiguration
