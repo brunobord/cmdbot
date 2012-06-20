@@ -3,6 +3,7 @@ Config file modules. Here you can pick your favorite configuration tool to
 handle bot parameters.
 
 """
+import os
 import argparse
 from ConfigParser import SafeConfigParser
 
@@ -88,3 +89,25 @@ class ArgumentConfiguration(GenericConfiguration):
         self.realname = args.realname
         # special case
         self.admins = args.admins.split(',')
+
+
+class EnvironmentConfiguration(GenericConfiguration):
+    "Get configuration via user environment."
+    def __init__(self):
+        self.host = os.environ.get("CMDBOT_HOST", False)
+        if not self.host:
+            raise Exception("CMDBOT_HOST is not set")
+
+        self.chan = os.environ.get("CMDBOT_CHAN", False)
+        if not self.chan:
+            raise Exception("CMDBOT_CHAN is not set")
+
+        self.port = int(os.environ.get("CMDBOT_PORT", DEFAULT_VARS['port']))
+        self.nick = os.environ.get("CMDBOT_NICK", DEFAULT_VARS['nick'])
+        self.ident = os.environ.get("CMDBOT_IDENT", DEFAULT_VARS['ident'])
+        self.realname = os.environ.get("CMDBOT_REALNAME", DEFAULT_VARS['realname'])
+        admins = os.environ.get("CMDBOT_ADMINS", DEFAULT_VARS['admins'])
+        if "," in admins:
+            self.admins = admins.split(",")
+        else:
+            self.admins = [admins]
