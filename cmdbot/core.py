@@ -98,6 +98,10 @@ class Bot(object):
         msg = 'PRIVMSG %s :%s\r\n' % (self.config.chan, message)
         self.s.send(msg)
 
+    def me(self, message):
+        "/me message"
+        self.say("\x01%s %s\x01" % ("ACTION", message))
+
     def parse_line(self, line):
         "Analyse the line. Return a Line object"
         message = nick_from = ''
