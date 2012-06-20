@@ -129,6 +129,9 @@ exactly the same.
 The Configuration you want
 ==========================
 
+Configure via the command-line arguments
+----------------------------------------
+
 CmdBot is coming with two available configuration modules. The default one is
 using the "ini file" described in :ref:`the ini file section <ini-file-label>`.
 
@@ -154,6 +157,32 @@ not mentioned, should be a string):
 * realname
 * admins - should be a tuple, a list or any iterable
 
+Environment variables
+---------------------
+
+Alternatively, you may want to configure the bot via your environment variables.
+For example:
+
+.. code-block::
+
+    from cmdbot.core import Bot
+    from cmdbot.configs import EnvironmentConfiguration
+
+    class MyEnvironmentBot(Bot):
+        config_class = EnvironmentConfiguration
+
+This bot will dig its configuration values out of the following environment
+variables:
+
+* ``CMDBOT_HOST``: mandatory IRC server host value
+* ``CMDBOT_CHAN``: mandatory channel the bot must join.
+* ``CMDBOT_PORT``: optional port value. Will default to '6667'.
+* ``CMDBOT_NICK``: optional nick value. Default is 'cmdbot'
+* ``CMDBOT_IDENT``: optional ident value. Default is 'cmdbot'
+* ``CMDBOT_REALNAME``: optional real name value. Default is 'Cmd bot'
+* ``CMDBOT_ADMINS``: a comma-separated list of the bot administrator.
+
+Default admin list is empty.
 
 What's next?
 ============
