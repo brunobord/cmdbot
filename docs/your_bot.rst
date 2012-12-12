@@ -126,6 +126,18 @@ You may want to define aliases for any command, like this:
 You won't have to worry about decorated methods, and such. Everything will work
 exactly the same.
 
+If you need special characters in your command, you cannot alias commands this
+way. Instead, you'll have to add a property, like this:
+
+.. code-block:: python
+
+    def do_coffee(self, line):
+        self.say(u'I can make coffee or café')
+    do_foo.aliases = (u'café', u'cafés', 'cafe')
+
+The aliases can be a list or a tuple. You'll have to define them using strings,
+not necessarily using unicode.
+
 The ``/me`` support
 -------------------
 

@@ -1,5 +1,8 @@
 CmdBot Changelog
 ----------------
+CmdBot (current)
+
+    * added the `aliases` utility.
 
 CmdBot (v1.0.4)
 
