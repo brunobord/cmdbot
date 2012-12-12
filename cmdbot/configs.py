@@ -17,11 +17,19 @@ DEFAULT_VARS = {
 }
 
 
+class DefaultConfiguration(object):
+    port = DEFAULT_VARS['port']
+    nick = DEFAULT_VARS['nick']
+    ident = DEFAULT_VARS['ident']
+    realname = DEFAULT_VARS['realname']
+    admins = DEFAULT_VARS['admins']
+
+
 class GenericConfiguration(object):
 
     def __repr__(self):
         result = []
-        keys = ('host', 'chan', 'port', 'nick')
+        keys = ('host', 'chan', 'port', 'nick', 'admins')
         for key in keys:
             result.append('* %s' % getattr(self, key))
         result.append('* %s' % ', '.join(self.admins))
