@@ -59,6 +59,7 @@ class Bot(object):
     exit_message = _("Bye, all")
     # One can override this
     config_class = IniFileConfiguration
+    aliases = {}
 
     def __init__(self):
         self.config = self.config_class()
@@ -74,6 +75,9 @@ class Bot(object):
             if callable(func):
                 if name.startswith('do_'):
                     self.available_functions.append(name.replace('do_', ''))
+                    if hasattr(func, 'aliases'):
+                        for alias in func.aliases:
+                            self.aliases[alias] = func
                 if hasattr(func, 'no_verb'):
                     self.no_verb_functions.append(func)
                 if hasattr(func, "no_help"):
@@ -130,6 +134,8 @@ class Bot(object):
     def process_line(self, line):
         "Process the Line object"
         func = None
+        if line.verb in self.aliases:
+            return self.aliases[line.verb](line)
         try:
             func = getattr(self, 'do_%s' % line.verb)
         except UnicodeEncodeError:
