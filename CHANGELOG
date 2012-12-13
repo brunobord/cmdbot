@@ -3,8 +3,10 @@ CmdBot Changelog
 CmdBot (current)
 
     * added the `aliases` utility.
+    * added the `reply` command.
     * handle exception gracefully. now the bot doesn't quit when a command
       raises an exception.
+    * better unicode error handling
 
 CmdBot (v1.0.4)
 

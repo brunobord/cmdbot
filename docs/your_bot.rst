@@ -33,7 +33,7 @@ in its code:
         @direct
         def do_hello(self, line):
             "Reply hello and save that in brain"
-            self.say("%s: hello" % line.nick_from)
+            self.reply("hello", nick=line.nick_from)
             self.brain.who_said_hello_last = line.nick_from
 
         @direct
@@ -78,6 +78,22 @@ optional `include_falses` argument:
     >>> bot.brain.stuff = 'hello'
     >>> bot.brain.knows('stuff')
     True
+
+'Say' or 'Reply'?
+=================
+
+Two basic actions are available to interact with the channel. The :meth:`say`
+method simply "says" your message.
+
+The :meth:`reply` method is a bit more elaborated, it's able to precisely reply
+to a user, as you can see in the above example. Example usage:
+
+.. code-block:: python
+
+    @direct
+    def do_hello(self, line):
+        self.reply('my message', line=line)  # will reply to the line emitted by the user
+        self.reply('my message', nick='mynick')  # will reply to 'mynick'
 
 
 The `do_<trick>`
