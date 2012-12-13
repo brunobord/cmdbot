@@ -12,7 +12,7 @@ import os
 import sys
 import socket
 import logging
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.DEBUG)
 #i18n installation
 import gettext
 try:
@@ -22,7 +22,7 @@ try:
     _ = t.gettext
 except:
     _ = gettext.gettext
-    logging.info("Translation Not Found. Fallback to default")
+    logging.info(u'Translation Not Found. Fallback to default')
 
 from cmdbot.configs import IniFileConfiguration
 from cmdbot.decorators import direct
@@ -55,8 +55,8 @@ class Bot(object):
             """
             return hasattr(self, key) and (getattr(self, key) or include_falses)
 
-    welcome_message = _("Hi everyone.")
-    exit_message = _("Bye, all")
+    welcome_message = _('Hi everyone.')
+    exit_message = _('Bye, all')
     # One can override this
     config_class = IniFileConfiguration
     aliases = {}
@@ -77,7 +77,7 @@ class Bot(object):
                     self.available_functions.append(name.replace('do_', ''))
                     if hasattr(func, 'aliases'):
                         for alias in func.aliases:
-                            self.aliases[alias] = func
+                            self.aliases['%s' % alias] = func
                 if hasattr(func, 'no_verb'):
                     self.no_verb_functions.append(func)
                 if hasattr(func, "no_help"):
@@ -89,7 +89,7 @@ class Bot(object):
 
     def connect(self):
         "Connect to the server and join the chan"
-        logging.info(_("Connection to host..."))
+        logging.info(_('Connection to host...'))
         self.s.connect((self.config.host, self.config.port))
         self.s.send("NICK %s\r\n" % self.config.nick)
         self.s.send("USER %s %s bla :%s\r\n" % (
@@ -135,8 +135,8 @@ class Bot(object):
         "Process the Line object"
         try:
             func = None
-            if line.verb in self.aliases:
-                return self.aliases[line.verb](line)
+            if line.verb.encode('utf') in self.aliases.keys():
+                return self.aliases[line.verb.encode('utf')](line)
             try:
                 func = getattr(self, 'do_%s' % line.verb)
             except UnicodeEncodeError:
@@ -171,6 +171,8 @@ class Bot(object):
         if len(splitted) == 1:
             self.say(_('Available commands: %(commands)s')
                 % {'commands': ', '.join(func for func in self.available_functions if func not in self.no_help_functions)})
+            if self.aliases:
+                self.say(_('Available aliases: %s') % ', '.join(self.aliases.keys()))
         else:
             command_name = splitted[1]
             try:
