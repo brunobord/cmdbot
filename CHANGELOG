@@ -3,6 +3,8 @@ CmdBot Changelog
 CmdBot (current)
 
     * added the `aliases` utility.
+    * handle exception gracefully. now the bot doesn't quit when a command
+      raises an exception.
 
 CmdBot (v1.0.4)
 
