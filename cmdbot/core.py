@@ -133,20 +133,24 @@ class Bot(object):
 
     def process_line(self, line):
         "Process the Line object"
-        func = None
-        if line.verb in self.aliases:
-            return self.aliases[line.verb](line)
         try:
-            func = getattr(self, 'do_%s' % line.verb)
-        except UnicodeEncodeError:
-            pass  # Do nothing, it won't work.
-        except AttributeError:
-            if line.direct:
-                # it's an instruction, we didn't get it.
-                self.say(_("%(nick)s: I have no clue...") % {'nick': line.nick_from})
-            self.process_noverb(line)
-        if func:
-            return func(line)
+            func = None
+            if line.verb in self.aliases:
+                return self.aliases[line.verb](line)
+            try:
+                func = getattr(self, 'do_%s' % line.verb)
+            except UnicodeEncodeError:
+                pass  # Do nothing, it won't work.
+            except AttributeError:
+                if line.direct:
+                    # it's an instruction, we didn't get it.
+                    self.say(_("%(nick)s: I have no clue...") % {'nick': line.nick_from})
+                self.process_noverb(line)
+            if func:
+                return func(line)
+        except:
+            logging.exception('Bot Error')
+            self.me("is going to die :( an exception occurred")
 
     def _raw_ping(self, line):
         "Raw PING/PONG game. Prevent your bot from being disconnected by server"
