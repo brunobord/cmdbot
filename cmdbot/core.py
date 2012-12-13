@@ -102,6 +102,18 @@ class Bot(object):
         msg = 'PRIVMSG %s :%s\r\n' % (self.config.chan, message)
         self.s.send(msg)
 
+    def reply(self, message, line=None, nick=None):
+        """Reply to the initial sender. Extracts the sender from line, if
+        not set in the arguments
+        """
+        if nick:
+            self.say("%s: %s" % (nick, message))
+        elif line:
+            self.say("%s: %s" % (line.nick_from, message))
+        else:
+            logging.info("Reply message used without line or nick. Please correct")
+            self.say(message)
+
     def me(self, message):
         "/me message"
         self.say("\x01%s %s\x01" % ("ACTION", message))
