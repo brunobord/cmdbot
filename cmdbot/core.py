@@ -12,7 +12,12 @@ import os
 import sys
 import socket
 import logging
-logging.basicConfig(level=logging.DEBUG)
+console = logging.StreamHandler()
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+console.setFormatter(formatter)
+logger = logging.getLogger('cmdbot')
+logger.addHandler(console)
+
 #i18n installation
 import gettext
 try:
@@ -22,7 +27,7 @@ try:
     _ = t.gettext
 except:
     _ = gettext.gettext
-    logging.info(u'Translation Not Found. Fallback to default')
+    logger.info(u'Translation Not Found. Fallback to default')
 
 from cmdbot.configs import IniFileConfiguration
 from cmdbot.decorators import direct
@@ -84,12 +89,12 @@ class Bot(object):
                     self.no_help_functions.append(func)
                     # little trick. helps finding out if function is decorated
                     self.no_help_functions.append(name.replace('do_', ''))
-        logging.debug(self.no_help_functions)
+        logger.debug(self.no_help_functions)
         self.s = socket.socket()
 
     def connect(self):
         "Connect to the server and join the chan"
-        logging.info(_('Connection to host...'))
+        logger.info(_('Connection to host...'))
         self.s.connect((self.config.host, self.config.port))
         self.s.send("NICK %s\r\n" % self.config.nick)
         self.s.send("USER %s %s bla :%s\r\n" % (
@@ -111,7 +116,7 @@ class Bot(object):
         elif line:
             self.say("%s: %s" % (line.nick_from, message))
         else:
-            logging.info("Reply message used without line or nick. Please correct")
+            logger.info("Reply message used without line or nick. Please correct")
             self.say(message)
 
     def me(self, message):
@@ -161,7 +166,7 @@ class Bot(object):
             if func:
                 return func(line)
         except:
-            logging.exception('Bot Error')
+            logger.exception('Bot Error')
             self.me("is going to die :( an exception occurred")
 
     def _raw_ping(self, line):
@@ -210,7 +215,7 @@ class Bot(object):
                     if raw_line.startswith('PING'):
                         self._raw_ping(raw_line)
                     elif self.config.chan in raw_line and 'PRIVMSG' in raw_line:
-                        logging.debug(raw_line)
+                        logger.debug(raw_line)
                         line = self.parse_line(raw_line)
                         self.process_line(line)
         except KeyboardInterrupt:
