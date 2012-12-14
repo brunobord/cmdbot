@@ -96,8 +96,8 @@ to a user, as you can see in the above example. Example usage:
         self.reply('my message', nick='mynick')  # will reply to 'mynick'
 
 
-The `do_<trick>`
-################
+The `do_trick`
+~~~~~~~~~~~~~~
 
 You may have noticed that every new thing your bot knows to do is prefixed by
 ``do_``. That's the trick. When someone on the channel says something, the bot
