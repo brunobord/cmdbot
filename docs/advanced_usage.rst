@@ -153,3 +153,16 @@ You just need to decorate your function like this:
     def do_nohelp(self, line):
         "I will never be displayed"
         pass
+
+Logging
+=======
+
+A simple logging variable can be imported and use inside your bot methods.
+By default, the Bot logging level is ``INFO``. You can easily change it like this
+
+.. code-block:: python
+
+    import logging
+    logger.setLevel(logging.DEBUG)
+    logging.debug("hey, I am debugging")
+
