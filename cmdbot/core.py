@@ -221,8 +221,8 @@ class Bot(object):
         except KeyboardInterrupt:
             self.s.send('QUIT :%s\r\n' % self.exit_message)
             sys.exit(_("Bot has been shut down. See you."))
-        except UnicodeEncodeError:
-            logger.error('Decode error in buffer reading. Move along')
+        except (UnicodeEncodeError, UnicodeDecodeError):
+            logger.error('Encode/Decode error in buffer reading. Move along')
 
 
 if __name__ == '__main__':
