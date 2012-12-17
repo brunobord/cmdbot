@@ -1,4 +1,5 @@
 #-*- coding: utf8 -*-
+import re
 from functools import wraps
 
 
@@ -42,3 +43,16 @@ def no_help(func):
     """Decorator: define a function that will never display its help if asked"""
     func.no_help = True
     return func
+
+
+def regex(exp):
+    "Decorator: only process the line if it matched with regular expression"
+    def real_decorator(func):
+        @wraps(func)
+        def newfunc(bot, line):
+            bot.match = re.match(exp, line.message)
+            if bot.match:
+                return func(bot, line)
+        return newfunc
+    return real_decorator
+
