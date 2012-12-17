@@ -154,6 +154,22 @@ You just need to decorate your function like this:
         "I will never be displayed"
         pass
 
+`contains` and `regex`
+----------------------
+
+You can parse and analyse the content of IRC lines using these decorators.
+
+Example:
+
+.. code-block:: python
+
+    @no_verb
+    @regex("^\.status (?P<resource>\w+)$")
+    def test_regex(self, line, match):
+        self.say("%s is fine" % match.group("resource"))
+
+
+
 Logging
 =======
 

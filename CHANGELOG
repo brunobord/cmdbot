@@ -4,6 +4,7 @@ CmdBot (current)
 
     * added the `aliases` utility.
     * added the `reply` command.
+    * added a `regex` decorator
     * handle exception gracefully. now the bot doesn't quit when a command
       raises an exception.
     * better unicode error handling

@@ -4,7 +4,7 @@
 """
 
 from cmdbot.core import Bot
-from cmdbot.decorators import direct, admin, no_verb, no_help
+from cmdbot.decorators import direct, admin, no_verb, no_help, regex, contains
 from cmdbot.configs import ArgumentConfiguration
 
 
@@ -32,6 +32,17 @@ class ArgumentBot(Bot):
     def do_nohelp(self):
         "I will never display this"
         pass
+
+    @no_verb
+    @regex("^\.status (?P<resource>\w+)$")
+    def test_regex(self, line, match):
+        self.say("%s is fine" % match.group("resource"))
+
+    @no_verb
+    @contains(' ur ')
+    def test_contains(self, line, match):
+        self.say("it's 'your' not 'ur'")
+
 
 if __name__ == '__main__':
     bot = ArgumentBot()
