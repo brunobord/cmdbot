@@ -31,6 +31,7 @@ except:
 
 from cmdbot.configs import IniFileConfiguration
 from cmdbot.decorators import direct
+from cmdbot.helpers import decode, encode
 
 
 class Line(object):
@@ -207,7 +208,7 @@ class Bot(object):
         readbuffer = ''
         try:
             while 1:
-                readbuffer = readbuffer + self.s.recv(1024).decode('utf')
+                readbuffer = readbuffer + decode(self.s.recv(1024))
                 temp = readbuffer.split("\n")  # string.split
                 readbuffer = temp.pop()
                 for raw_line in temp:
